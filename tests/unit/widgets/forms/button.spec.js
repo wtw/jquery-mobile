@@ -63,6 +63,5 @@ define([
 		myButton = $.mobile.button( { inline: true }, $( "<input type='button' value='my button'>" ) );
 		wrapper = $.mobile.button.prototype._button.call( myButton );
 		ok( wrapper.hasClass( "ui-btn-inline" ), "button wrapper should have class ui-btn-inline" );
-
 	});
 });
