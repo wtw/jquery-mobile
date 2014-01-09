@@ -28,8 +28,12 @@ define([
 	test( "_button", function() {
 		var myButton, wrapper, _getIconClasses;
 
-		myButton = $.mobile.button( {}, $( "<input type='button' value='my button'>" ) );
+		// Stub _enhance method so it doesn't actually get called
+		this.stub( $.mobile.button.prototype, "_enhance" );
+
 		_getIconClasses = this.stub( $.mobile.button.prototype, "_getIconClasses" ).returns( "icon-class" );
+
+		myButton = $.mobile.button( {}, $( "<input type='button' value='my button'>" ) );
 		wrapper = $.mobile.button.prototype._button.call( myButton );
 		ok( _getIconClasses.calledOnce, "_getIconClasses should be called once" );
 		ok( wrapper.hasClass( "icon-class" ), "button wrapper should have class icon-class" );
