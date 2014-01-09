@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile Unit Tests</title>
+
+    <link rel="stylesheet" href="../../external/qunit.css"/>
+</head>
+<body>
+    <h1 id="qunit-header">jQuery Mobile Unit Tests</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+
+    <script src="../../js/jquery.tag.inserter.js"></script>
+
+    <script src="../../external/qunit.js"></script>
+
+    <script src="../../external/sinon/sinon.js"></script>
+    <script src="../../external/sinon/sinon-qunit.js"></script>
+
+    <script src="../../external/requirejs/require.js"></script>
+    <script src="../../js/requirejs.config.js"></script>
+
+    <script>
+        QUnit.config.autostart = false;
+        QUnit.config.reorder = false;
+        requirejs.config({
+            baseUrl: "../../js"
+        });
+        require([
+            "./widgets/forms/button.spec.js"
+        ], function() {
+            QUnit.start();
+        })
+    </script>
+</body>
+</html>
