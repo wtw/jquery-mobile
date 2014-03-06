@@ -368,6 +368,43 @@ $.mobile.collapsible.defaults = {
 	mini: false
 };
 
+// Delegated event handlers to pick up all possible events that collapsibles are expected to
+// handle. These are widget-specific.
+$.mobile.document.on( "click tap", ".ui-collapsible .ui-collapsible-heading a", function( event ) {
+	var widget,
+
+		// Widget-specific way of locating the element onto which a widget is to be instantiated
+		collapsible = $( event.target ).parent().parent(),
+
+		// Widget-specific handler to call
+		handler = event.type === "tap" ? "_handleHeadingTap" : "_handleHeadingClick";
+
+	// If the widget is not yet instantiated, do so now, and handle this event there
+	if ( !$.data( collapsible[ 0 ], "mobile-collapsible" ) ) {
+		collapsible.collapsible();
+
+		// Widget-specific way of handling this event
+		return $.data( collapsible[ 0 ], "mobile-collapsible" )[ handler ]( event );
+	}
+});
+
+// Override the programmatic access devs have to the widget. This assumes the dev will not call
+// methods of this widget on the wrong element. This code could go into the widget factory, where
+// the jQuery plugin is defined.
+$.fn.collapsible = ( function( orig ) {
+	return function() {
+
+		this.each( function() {
+			var oneElement = $( this );
+			if ( !$.data( this, "mobile-collapsible" ) ) {
+				orig.apply( oneElement );
+			}
+		});
+
+		return orig.apply( this, arguments );
+	};
+})( $.fn.collapsible );
+
 })( jQuery );
 //>>excludeStart("jqmBuildExclude", pragmas.jqmBuildExclude);
 });
