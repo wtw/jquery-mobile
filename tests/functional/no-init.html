@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQM latest - issue template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../css/themes/default/jquery.mobile.css"/>
+  <script src="../../external/requirejs/require.js"></script>
+  <script src="../../js/requirejs.config.js"></script>
+  <script>
+( function() {
+
+require.config({ baseUrl: "../../js/" });
+
+require([ "widgets/collapsible" ], function() {
+
+	$( document ).on( "click", "#call-expand", function() {
+		$( "#the-collapsible" ).collapsible( "expand" );
+	});
+
+});
+
+})();
+  </script>
+</head>
+<body>
+
+<div data-role="page">
+	<div data-role="header">
+		<h1>Header</h1>
+	</div>
+	<div class="ui-content" role="main">
+		<p>Content.</p>
+		<a href="#" id="call-expand" class="ui-btn ui-btn-a ui-corner-all ui-shadow">Call expand()</a>
+		<div id="the-collapsible" data-enhanced="true" data-theme="a" data-content-theme="a" class="ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-collapsed ui-collapsible-themed-content">
+			<h2 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+				<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus">Title
+					<span class="ui-collapsible-heading-status"> click to expand contents</span>
+				</a>
+			</h2>
+			<div class="ui-collapsible-content ui-body-a ui-collapsible-content-collapsed" aria-hidden="true">
+				<p>The content.</p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
