@@ -14,6 +14,8 @@ define( [
 	// we will assume that all children of the collapsibleset are to be turned
 	// into collapsibles.
 	"./page",
+
+	"../events/touch",
 	"../jquery.mobile.core",
 	"../jquery.mobile.widget" ], function( jQuery ) {
 //>>excludeEnd("jqmBuildExclude");
@@ -67,16 +69,19 @@ $.widget( "mobile.collapsible", {
 		}
 
 		this._on( ui.heading, {
-			"tap": function() {
-				ui.heading.find( "a" ).first().addClass( $.mobile.activeBtnClass );
-			},
-
-			"click": function( event ) {
-				this._handleExpandCollapse( !ui.heading.hasClass( "ui-collapsible-heading-collapsed" ) );
-				event.preventDefault();
-				event.stopPropagation();
-			}
+			"tap": "_handleHeadingTap",
+			"click": "_handleHeadingClick"
 		});
+	},
+
+	_handleHeadingTap: function() {
+		this._ui.heading.find( "a" ).first().addClass( $.mobile.activeBtnClass );
+	},
+
+	_handleHeadingClick: function( event ) {
+		this._handleExpandCollapse( !this._ui.heading.hasClass( "ui-collapsible-heading-collapsed" ) );
+		event.preventDefault();
+		event.stopPropagation();
 	},
 
 	// Adjust the keys inside options for inherited values
