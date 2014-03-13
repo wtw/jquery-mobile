@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Grids - jQuery Mobile Demos</title>
+	<title>Page Events - jQuery Mobile Demos</title>
 	<link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="../../css/themes/default/jquery.mobile.css">
@@ -37,7 +37,7 @@
 
 	<div role="main" class="ui-content jqm-content">
 
-		<h1>navigate between pages and open and close panel and popup widgets to see which events fire and their data</h1>
+		<h1>Navigate between pages and open and close panel and popup widgets to see which events fire and their data.</h1>
 		<a class="ui-btn ui-corner-all ui" href="logevents.php">Go To Page 1</a>
 		<a class="ui-btn ui-corner-all ui" href="logevents-2.php">Go To Page 2</a>
 		<a class="ui-btn ui-corner-all ui" href="#popup">Open Popup</a>

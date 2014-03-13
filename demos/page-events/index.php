@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Grids - jQuery Mobile Demos</title>
+	<title>Page Events - jQuery Mobile Demos</title>
 	<link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="../../css/themes/default/jquery.mobile.css">
@@ -26,12 +26,12 @@
 
 		<h1>Page Events Demo</h1>
 
-		<p>This demo illustrates the different page events that fire during a pages life-cycle and the elements which they are triggered on</p>
+		<p>This demo illustrates the different page events that fire during a page's life-cycle and the elements on which they are triggered.</p>
 
 		<h2>Event Debugging</h2>
 
-		<p>This demo uses the jquery-mobile-event-debugger plugin from arschmitz available at <a href="https://github.com/arschmitz/jquery-mobile-event-debugger">https://github.com/arschmitz/jquery-mobile-event-debugger</a>
-			This tool allows jquery mobile events to be logged or alerted as they happen for inspection and are agumented with descriptions from the api docs</p>
+		<p>This demo uses the jquery-mobile-event-debugger plugin from arschmitz available at <a href="https://github.com/arschmitz/jquery-mobile-event-debugger">https://github.com/arschmitz/jquery-mobile-event-debugger</a>.
+			This tool allows jQuery Mobile events to be logged or alerted as they happen for inspection and are augmented with descriptions from the API docs.</p>
 
 		<a class="ui-btn ui-corner-all" href="logevents.php" data-ajax="false">View Demo</a>
 		<a class="ui-btn ui-corner-all" href="alertevents.php" data-ajax="false">View Demo With Alerts</a>
