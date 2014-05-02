@@ -564,7 +564,7 @@ define( [
 
 				// BEGIN DEPRECATED ---------------------------------------------------
 				// Let listeners know the content loaded successfully.
-				this.element.trigger( "pageload" );
+				this._triggerWithDeprecated( "pageload" );
 				// END DEPRECATED -----------------------------------------------------
 
 				deferred.resolve( absUrl, settings, content );
@@ -858,9 +858,9 @@ define( [
 			var returnEvents,
 				pbcEvent = new $.Event( "pagebeforechange" );
 
+			triggerData.prevPage = this.activePage;
 			$.extend(triggerData, {
 				toPage: to,
-				prevPage: this.getActive,
 				options: settings
 			});
 
@@ -879,8 +879,7 @@ define( [
 			}
 
 			// Let listeners know we're about to change the current page.
-			this.element.trigger( "beforechange", triggerData );
-			returnEvents = this._triggerWithDeprecated( "beforechange", triggerData )
+			returnEvents = this._triggerWithDeprecated( "beforechange", triggerData );
 
 			// If the default behavior is prevented, stop here!
 			if ( returnEvents.event.isDefaultPrevented() ||
@@ -1013,7 +1012,7 @@ define( [
 
 				isPageTransitioning = false;
 				this._triggerWithDeprecated( "transition", triggerData );
-				this.element.trigger( "pagechange", triggerData );
+				this._triggerWithDeprecated( "change", triggerData );
 
 				// Even if there is no page change to be done, we should keep the
 				// urlHistory in sync with the hash changes
@@ -1180,8 +1179,8 @@ define( [
 				}
 
 				this._releaseTransitionLock();
-				this._triggerWithDeprecated( "change", triggerData );
 				this._triggerWithDeprecated( "transition", triggerData );
+				this._triggerWithDeprecated( "change", triggerData );
 			}, this));
 		},
 
