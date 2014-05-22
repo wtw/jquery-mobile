@@ -855,8 +855,7 @@ define( [
 		},
 
 		_triggerPageBeforeChange: function( to, triggerData, settings ) {
-			var returnEvents,
-				pbcEvent = new $.Event( "pagebeforechange" );
+			var returnEvents;
 
 			triggerData.prevPage = this.activePage;
 			$.extend(triggerData, {
