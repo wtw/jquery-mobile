@@ -1,0 +1,15 @@
+{
+	"username": "pass",
+	"key": "key",
+	"test_path": [
+		"tests/unit/button/index.html",
+		"tests/unit/checkboxradio/index.html",
+		"tests/unit/collapsible/index.html",
+		"tests/unit/collapsibleset/index.html",
+		"tests/unit/textinput/index.html"
+	],
+	"test_framework": "qunit",
+	"browsers": [
+		"chrome_latest"
+	]
+}
