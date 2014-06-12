@@ -11,7 +11,7 @@
 	<script src="../../external/jquery/jquery.js"></script>
 	<script src="../_assets/js/"></script>
 	<script src="../../js/"></script>
-	<script src="http://jquery-mobile-event-debugger.10.0.1.29.xip.io/debugger.js"></script>
+	<script src="https://rawgithub.com/arschmitz/jquery-mobile-event-debugger/v0.0.3/jquery.mobile.event.debugger.js"></script>
 	<script>
 		$.mobile.eventLogger({
 			deprecated: true,
@@ -34,13 +34,21 @@
 		<a href="#" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
 		<a href="#" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
 	</div><!-- /header -->
-
+	<div id="popup" data-role="popup">
+		Popup
+	</div>
 	<div role="main" class="ui-content jqm-content">
 
 		<h1>Navigate between pages and open and close panel and popup widgets to see which events fire and their data.</h1>
 		<a class="ui-btn ui-corner-all ui" href="logevents-2.php">Go To Page 2</a>
 		<a class="ui-btn ui-corner-all ui" href="logevents-3.php">Go To Page 3</a>
-		<a class="ui-btn ui-corner-all ui" href="#popup">Open Popup</a>
+		<a class="ui-btn ui-corner-all ui" href="foo.html">Go To Page that does not exist</a>
+		<a class="ui-btn ui-corner-all ui" data-rel="popup" href="#popup">Open Popup</a>
+		<label for="select">Select Menu</label>
+		<select id="select" data-native-menu="false">
+			<option>foo</option>
+			<option>bar</option>
+		</select>
 
 	</div><!-- /content -->
 

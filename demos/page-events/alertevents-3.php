@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Grids - jQuery Mobile Demos</title>
+	<title>Page Events - jQuery Mobile Demos</title>
 	<link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="../../css/themes/default/jquery.mobile.css">
@@ -11,14 +11,14 @@
 	<script src="../../external/jquery/jquery.js"></script>
 	<script src="../_assets/js/"></script>
 	<script src="../../js/"></script>
-	<script src="https://rawgithub.com/arschmitz/jquery-mobile-event-debugger/v0.0.1/debugger.js"></script>
+	<script src="https://rawgithub.com/arschmitz/jquery-mobile-event-debugger/v0.0.3/jquery.mobile.event.debugger.js"></script>
 	<script>
 		$.mobile.eventLogger({
 			deprecated: true,
+			showAlert: true,
 			events: {
 				page: true
 			},
-			showAlert: true,
 			widgets: {
 				page: true,
 				pagecontainer: true

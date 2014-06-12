@@ -539,7 +539,7 @@ define( [
 				// Note that it is the responsibility of the listener/handler
 				// that called preventDefault(), to resolve/reject the
 				// deferred object within the triggerData.
-				if ( !this._trigger( "load", undefined, triggerData ) ) {
+				if ( this._triggerWithDeprecated( "load" ).event.isDefaultPrevented() ) {
 					return;
 				}
 
@@ -561,11 +561,6 @@ define( [
 				if ( settings.showLoadMsg ) {
 					this._hideLoading();
 				}
-
-				// BEGIN DEPRECATED ---------------------------------------------------
-				// Let listeners know the content loaded successfully.
-				this._triggerWithDeprecated( "pageload" );
-				// END DEPRECATED -----------------------------------------------------
 
 				deferred.resolve( absUrl, settings, content );
 			}, this);
