@@ -7,6 +7,7 @@ var eventSequence,
 		"pagebeforechange",
 		"pagebeforeload",
 		"pageload",
+		"pageloadfailed",
 		"pagebeforehide",
 		"pagebeforeshow",
 		"pagehide",
@@ -17,6 +18,7 @@ var eventSequence,
 		"pagecontainerbeforechange",
 		"pagecontainerbeforeload",
 		"pagecontainerload",
+		"pagecontainerloadfailed",
 		"pagebeforecreate",
 		"pagecreate",
 		"pageinit",
@@ -60,12 +62,19 @@ module( "Page event sequence tests", {
 	}
 });
 
+function makeOtherPageUrl( filename ) {
+	var parsedUrl = $.mobile.path.parseLocation();
+
+	return $.mobile.path.getLocation( $.extend( parsedUrl, {
+		filename: filename,
+		pathname: parsedUrl.directory + filename
+	}));
+}
+
 asyncTest( "Event sequence during navigation to another page", function() {
-	var parsedUrl = $.mobile.path.parseLocation(),
-		otherPageUrl = $.mobile.path.getLocation( $.extend( parsedUrl, {
-			filename: "other-page.html",
-			pathname: parsedUrl.directory + "other-page.html"
-		})),
+	expect( 1 );
+
+	var otherPageUrl = makeOtherPageUrl( "other-page.html" ),
 		expectedEventSequence = [
 
 			// Deprecated as of 1.4.0
@@ -166,7 +175,54 @@ asyncTest( "Event sequence during navigation to another page", function() {
 			$( ":mobile-pagecontainer" ).pagecontainer( "back" );
 		},
 		function() {
-			deepEqual( true, true, "Works" );
+			start();
+		}
+	]);
+});
+
+asyncTest( "Event sequence during page load failure", function() {
+	expect( 1 );
+
+	var otherPageUrl = makeOtherPageUrl( "page-does-not-exist.html" ),
+		expectedEventSequence = [
+
+			// Deprecated as of 1.4.0
+			{ type: "pagebeforechange", target: "the-body",
+				data: { prevPage: "start-page", nextPage: undefined, toPage: otherPageUrl } },
+
+			// Valid
+			{ type: "pagecontainerbeforechange", target: "the-body",
+				data: { prevPage: "start-page", nextPage: undefined, toPage: otherPageUrl } },
+
+			// Deprecated as of 1.4.0
+			{ type: "pagebeforeload", target: "the-body",
+				data: { prevPage: "start-page", nextPage: undefined, toPage: otherPageUrl } },
+
+			// Valid
+			{ type: "pagecontainerbeforeload", target: "the-body",
+				data: { prevPage: "start-page", nextPage: undefined, toPage: otherPageUrl } },
+
+			// Deprecated as of 1.4.0
+			{ type: "pageloadfailed", target: "the-body",
+				data: { prevPage: "start-page", nextPage: undefined, toPage: otherPageUrl } },
+
+			// Valid
+			{ type: "pagecontainerloadfailed", target: "the-body",
+				data: { prevPage: "start-page", nextPage: undefined, toPage: otherPageUrl } }
+		];
+
+	$.testHelper.detailedEventCascade([
+		function() {
+			$( "#go-to-nonexistent-page" ).click();
+		},
+		{
+			pagecontainerloadfailed: {
+				src: $( ":mobile-pagecontainer" ),
+				event: "pagecontainerloadfailed.eventSequenceDuringPageLoadFailure1"
+			}
+		},
+		function() {
+			deepEqual( eventSequence, expectedEventSequence, "Event sequence as expected" );
 			start();
 		}
 	]);
