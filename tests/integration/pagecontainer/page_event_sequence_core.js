@@ -63,11 +63,14 @@ module( "Page event sequence tests", {
 });
 
 function makeOtherPageUrl( filename ) {
-	var parsedUrl = $.mobile.path.parseLocation();
+	var path = $.mobile.path,
+		parsedUrl = path.parseLocation();
 
-	return $.mobile.path.getLocation( $.extend( parsedUrl, {
+	return path.getLocation( $.extend( parsedUrl, {
 		filename: filename,
-		pathname: parsedUrl.directory + filename
+		pathname: parsedUrl.directory + filename,
+		hash: "",
+		search: ""
 	}));
 }
 
