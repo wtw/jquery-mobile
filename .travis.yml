@@ -7,7 +7,7 @@ before_script:
 script: npm run-script ci
 branches:
   only:
-    - master
+    - debug-page-events-demo
 env:
   - TYPES=unit
     JQUERIES=1.8.3
