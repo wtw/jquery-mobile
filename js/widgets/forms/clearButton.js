@@ -122,7 +122,9 @@ define( [
 
 		_destroy: function() {
 			this._super();
-			this._destroyClear();
+			if ( this.options.clearBtn && !this.options.enhanced ) {
+				this._destroyClear();
+			}
 		}
 
 	});
