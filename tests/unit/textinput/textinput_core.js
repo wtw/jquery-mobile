@@ -149,4 +149,35 @@
 			"turning off clearBtn removes wrapper class 'ui-input-has-clear'" );
 	});
 
+( function() {
+
+	var originalDestroyClear = $.mobile.textinput.prototype._destroyClear,
+		destroyClearCalled = false;
+
+	module( "Textinput destroy", {
+		setup: function() {
+			$.mobile.textinput.prototype._destroyClear = function() {
+				destroyClearCalled = true;
+				return originalDestroyClear.apply( this, arguments );
+			}
+		},
+		teardown: function() {
+			$.mobile.textinput.prototype._destroyClear = originalDestroyClear;
+		}
+	});
+
+	test( "textinput is destroyed correctly", function() {
+		var originalDOM = $( "#destroy-test-container" ).clone(),
+			entry = $( "#destroy-test" );
+
+		entry.textinput().textinput( "destroy" );
+
+		deepEqual( $.testHelper.domEqual( originalDOM, $( "#destroy-test-container" ) ), true,
+			"Original DOM is restored after textinput destruction" );
+
+		deepEqual( destroyClearCalled, false, "_destroyClear() was not called" );
+	});
+
+})();
+
 })(jQuery);
